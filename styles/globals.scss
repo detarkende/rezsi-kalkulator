@@ -1,0 +1,47 @@
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import '../node_modules/bootstrap/scss/functions';
+
+// 2. Include any default variable overrides here
+$light: #f3f4f6;
+$border-radius: 0.85rem;
+$border-radius-sm: 0.65rem;
+
+$blue: #2563eb;
+$indigo: #4f46e5;
+$purple: #9333ea;
+$pink: #db2777;
+$red: #dc2626;
+$orange: #ea580c;
+$yellow: #facc15;
+$green: #16a34a;
+$teal: #14b8a6;
+$cyan: #22d3ee;
+
+$primary: $indigo;
+
+$btn-padding-y: 0.35rem;
+$btn-padding-x: 0.75rem;
+
+$btn-padding-y-sm: 0.275rem;
+$btn-padding-x-sm: 0.75rem;
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+
+// 4. Include bootstrap
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+body {
+	font-family: 'Inter';
+}
+
+@media not all and (min-resolution:.001dpcm) { 
+    @supports (-webkit-appearance:none) {
+        .form-control-sm {
+            font-size: 16px !important;
+        }
+    }
+}
