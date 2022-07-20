@@ -1,21 +1,14 @@
 import type { NextPage } from "next";
 import { Col, FormControl, InputGroup, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import Calculator from "@/components/Calculator";
+import Kalkulator from "@/components/Kalkulator";
+import NagyCsaladosInput from "@/components/NagyCsaladosInput";
+import { formatAsForint, getMapValuesSum } from '@/helpers';
 
 const Home: NextPage = () => {
     const [koltsegek, setKoltsegek] = useState<Map<string, number>>(new Map());
-    const getMapValueSum = (map: Map<string, number>) => {
-        let sum = 0;
-        map.forEach((value) => {
-            sum += value;
-        }
-        );
-        return sum;
-    }
-    useEffect(() => {
-        console.log('update');
-    }, [koltsegek]);
+	const [nagyCsaladosKedvezmeny, setNagyCsaladosKedvezmeny] = useState<number>(0);
+    
 	return (
 		<>
 			<div>
@@ -45,7 +38,7 @@ const Home: NextPage = () => {
 			</div>
             <p className="mt-3 fs-4">
                 Összesen:&nbsp;
-                <strong>{Intl.NumberFormat('hu-HU', {style: 'currency', currency: 'HUF'}).format(getMapValueSum(koltsegek))}</strong>
+                <strong>{formatAsForint(getMapValuesSum(koltsegek))}</strong>
             </p>
 		</>
 	);
