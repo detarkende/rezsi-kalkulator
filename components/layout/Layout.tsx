@@ -1,11 +1,13 @@
 import Navbar from "@/components/layout/Navbar";
 import type { ReactNode } from "react";
 import { Container } from "react-bootstrap";
+import PWAHead from "../PWAHead";
 
 
 function Layout({children}: {children: ReactNode}) {
     return (
         <>
+            <PWAHead />
             <div id="layout-wrapper">
                 <Navbar />
                 <main className="py-3">
