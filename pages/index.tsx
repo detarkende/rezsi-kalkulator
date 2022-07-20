@@ -11,7 +11,7 @@ const Home: NextPage = () => {
     
 	return (
 		<>
-			<div>12
+			<div>
 				<NagyCsaladosInput setNagyCsaladosKedvezmeny={setNagyCsaladosKedvezmeny} />
 			</div>
 			<hr className="my-4" />
