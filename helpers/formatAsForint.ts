@@ -1,0 +1,1 @@
+export const formatAsForint = (value: number) => Intl.NumberFormat('hu-HU', {style: 'currency', currency: 'HUF'}).format(value);
