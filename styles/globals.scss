@@ -35,7 +35,7 @@ $btn-padding-x-sm: 0.75rem;
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
 body {
-	font-family: 'Inter';
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Inter';
 }
 
 @media not all and (min-resolution:.001dpcm) { 
