@@ -23,6 +23,8 @@ const NagyCsaladosInput = ({
 					<FormControl
 						type="number"
 						defaultValue={0}
+						inputMode="numeric"
+						aria-label='Gyermekek száma'
 						onChange={inputChange}
 					/>
 				</InputGroup>

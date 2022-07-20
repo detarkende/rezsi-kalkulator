@@ -2,9 +2,9 @@ import { Navbar as NavbarBs, Container, Nav, Button } from 'react-bootstrap';
 
 function Navbar() {
 	return (
-		<NavbarBs bg="light">
+		<NavbarBs bg="dark">
             <Container>
-                <NavbarBs.Brand href="/">Rezsi Kalkulátor</NavbarBs.Brand>
+                <NavbarBs.Brand className='text-white' href="/">Rezsi Kalkulátor</NavbarBs.Brand>
             </Container>
         </NavbarBs>
 	);
