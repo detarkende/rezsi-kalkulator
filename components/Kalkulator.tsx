@@ -2,14 +2,14 @@ import { Col, FormControl, InputGroup, Row } from "react-bootstrap";
 import { useState, useEffect, ChangeEvent } from "react";
 import { ReactNode } from "react";
 
-const Calculator = ({
+const Kalkulator = ({
     cim,
 	mertekEgyseg,
 	regiAr,
 	ujAr,
 	atlagFogyasztasHatara,
     setKoltsegek,
-}: {
+} : {
     cim: string,
 	mertekEgyseg: string | ReactNode,
 	regiAr: number,
@@ -35,7 +35,7 @@ const Calculator = ({
 		}
 		setRezsiForintban(parseInput(e.target.value) || 0);
 		setRezsiEgysegben(forint / REZSI_ARA_REGI_PER_EGYSEG);
-	};
+	}
 
     const rezsiChange = (e: ChangeEvent<HTMLInputElement>) => {
         let rezsi = 0;
@@ -44,7 +44,7 @@ const Calculator = ({
         }
         setRezsiEgysegben(parseInput(e.target.value) || 0);
         setRezsiForintban(rezsi * REZSI_ARA_REGI_PER_EGYSEG);
-    }
+	}
 
 	const [ujRezsi, setUjRezsi] = useState<number>(0);
 	useEffect(() => {
@@ -60,7 +60,7 @@ const Calculator = ({
 			}
 		}
 		setUjRezsi(sum);
-	}, [rezsiForintban, rezsiEgysegben]);
+	}, [rezsiForintban, rezsiEgysegben, atlagFogyasztasHatara]);
 
     useEffect(() => {
         setKoltsegek((prev: Map<string, number>) => {
@@ -131,4 +131,4 @@ const Calculator = ({
 	);
 };
 
-export default Calculator;
+export default Kalkulator;
