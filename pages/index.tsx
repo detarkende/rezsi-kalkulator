@@ -1,82 +1,52 @@
 import type { NextPage } from "next";
 import { Col, FormControl, InputGroup, Row } from "react-bootstrap";
-import { useState, useEffect, ChangeEvent } from "react";
+import { useState, useEffect } from "react";
+import Calculator from "@/components/Calculator";
 
 const Home: NextPage = () => {
-	const ARAM_ARA_REGI_PER_KWH = 36.9;
-	const ARAM_ARA_UJ_PER_KWH = 140;
-	const ARAM_ATLAG_FOGYASZTAS_HATAR = 210;
-
-	const [aramForintban, setAramForintban] = useState<number>();
-	const [aramKWHban, setAramKWHban] = useState<number>();
-
-    function parseInput(input: string) {
-        return parseFloat(input.replace(",", ".").replace(/\s/g, ""));
-    }
-
-	const forintChange = (e: ChangeEvent<HTMLInputElement>) => {
-		let forint = 0;
-		if (e.target.value) {
-			forint = parseInput(e.target.value.replace(/\s/g, ''));
-		}
-        setAramForintban((parseInput(e.target.value) || 0))
-		setAramKWHban(forint / ARAM_ARA_REGI_PER_KWH);
-	};
-
-
-    const [ujRezsi, setUjRezsi] = useState<number>(0);
-    useEffect(() => {
+    const [koltsegek, setKoltsegek] = useState<Map<string, number>>(new Map());
+    const getMapValueSum = (map: Map<string, number>) => {
         let sum = 0;
-        if (aramKWHban) {
-            if (aramKWHban > ARAM_ATLAG_FOGYASZTAS_HATAR) {
-                sum = 
-                    (ARAM_ATLAG_FOGYASZTAS_HATAR * ARAM_ARA_REGI_PER_KWH) // rezsicsokkentett hanyad
-                    + 
-                    ((aramKWHban - ARAM_ATLAG_FOGYASZTAS_HATAR) * ARAM_ARA_UJ_PER_KWH); // atlag feletti rezsi ar
-            } else {
-                sum = aramKWHban * ARAM_ARA_REGI_PER_KWH;
-            }
+        map.forEach((value) => {
+            sum += value;
         }
-        setUjRezsi(sum);
-    }, [aramForintban, aramKWHban]);
+        );
+        return sum;
+    }
+    useEffect(() => {
+        console.log('update');
+    }, [koltsegek]);
 	return (
 		<>
-            <h3></h3>
-			<p>
-				Adja meg, hogy mennyit fizetett eddig, vagy mennyit fogyaszt
-				havonta!
-			</p>
-			<form>
-				<Row className="gy-3" xs={1} md={2}>
-					<Col>
-						<InputGroup>
-							<FormControl
-								size="sm"
-								placeholder="Havi fogyasztás forintban"
-								onChange={forintChange}
-                                inputMode="numeric"
-								value={aramForintban ? Intl.NumberFormat('hu-HU').format(aramForintban) : ""}
-							/>
-							<InputGroup.Text>Ft</InputGroup.Text>
-						</InputGroup>
-						<span><br /></span>
-						<InputGroup>
-							<FormControl
-                                disabled
-								size="sm"
-								placeholder="Havi fogyasztás kW-ban"
-                                inputMode="numeric"
-								value={aramKWHban ? Intl.NumberFormat('hu-HU').format(aramKWHban) : ""}
-							/>
-							<InputGroup.Text>kWh</InputGroup.Text>
-						</InputGroup>
-					</Col>
-
-					<Col>
-						<p>Ezentúl fizetendő: <strong className="fw-bold">{Intl.NumberFormat('hu-HU').format(ujRezsi)} Ft</strong></p>
-					</Col>
-				</Row>
-			</form>
+			<div>
+				<Calculator
+                    setKoltsegek={setKoltsegek}
+					cim="Áram"
+					mertekEgyseg="kWh"
+					regiAr={36.9}
+					ujAr={140}
+					atlagFogyasztasHatara={210}
+				/>
+			</div>
+			<hr />
+			<div>
+				<Calculator
+                    setKoltsegek={setKoltsegek}
+					cim="Gáz"
+					mertekEgyseg={
+						<>
+							m<sup>3</sup>
+						</>
+					}
+					regiAr={109.9}
+					ujAr={912.3}
+					atlagFogyasztasHatara={144}
+				/>
+			</div>
+            <p className="mt-3 fs-4">
+                Összesen:&nbsp;
+                <strong>{Intl.NumberFormat('hu-HU', {style: 'currency', currency: 'HUF'}).format(getMapValueSum(koltsegek))}</strong>
+            </p>
 		</>
 	);
 };
