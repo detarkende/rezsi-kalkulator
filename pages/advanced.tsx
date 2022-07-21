@@ -1,60 +1,47 @@
 import FormField from "@/components/Advanced/FormField";
 import { useState, useEffect } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Form, Row } from "react-bootstrap";
+import Fogyasztasok from "@/components/Advanced/Fogyasztasok";
 
 function Advanced() {
-    const [rezsi, setRezsi] = useState({
-        aram: 0,
-        ejszakaiAram: 0,
-        gaz: 0,
-    });
-    const [gyerekek, setGyerekek] = useState(0);
+	const [rezsi, setRezsi] = useState({
+		aram: 0,
+		ejszakaiAram: 0,
+		gaz: 0,
+	});
+	const [gyerekek, setGyerekek] = useState(0);
 
-    const [valto, setValto] = useState({
-        aram: {}
-    });
+	const aramTarifak = [
+		{ id: 1, nev: "A1/A2", ar: 70.104 },
+		{ id: 2, nev: "B", ar: 62.884 },
+	];
+	const [aramTarifa, setAramTarifa] = useState(aramTarifak[0]);
 
-    return (
-        <>
+	return (
+		<>
             <Row xs={1} sm={2} lg={3}>
-                <Col>
-                    <FormField
-                        label="Havi nappali áram fogyasztás"
-                        type="number"
-                        postfix={"kWH"}
-                        value={ rezsi.aram || "" }
-                        onChange={(e) => {setRezsi(rezsi => ({...rezsi, aram: Number(e.target.value)}))}}
-                    />
-                </Col>
+                <Form.Group>
+                    <Form.Label>Áramtarifa</Form.Label>
+                    <Form.Select onChange={(e) => setAramTarifa(aramTarifak.find(t => t.id == e.target.value) || aramTarifak[0])}>
+                        { aramTarifak.map((tarifa) => (
+                            <option key={tarifa.id} value={tarifa.id}>{tarifa.nev}</option>
+                        ))}
+                    </Form.Select>
+                </Form.Group>
+            </Row>           
 
-                <Col>
-                    <FormField
-                        label="Havi éjszakai áram fogyasztás"
-                        type="number"
-                        postfix={"kWH"}
-                        value={ rezsi.ejszakaiAram || "" }
-                        onChange={(e) => {setRezsi(rezsi => ({...rezsi, ejszakaiAram: Number(e.target.value)}))}}
-                    />
-                </Col>
+			<Row xs={1} sm={2} lg={3}>
+				<Fogyasztasok rezsi={rezsi} setRezsi={setRezsi} />
+			</Row>
 
-                <Col>
-                    <FormField
-                        label="Havi gáz fogyasztás"
-                        type="number"
-                        postfix={<span>m<sup>3</sup></span>}
-                        value={ rezsi.gaz || "" }
-                        onChange={(e) => {setRezsi(rezsi => ({...rezsi, gaz: Number(e.target.value)}))}}
-                    />
-                </Col>
-            </Row>
-
+			<pre className="mt-5">
+				<code>{JSON.stringify(rezsi, null, "\t")}</code>
+			</pre>
             <pre className="mt-5">
-                <code>
-                    {JSON.stringify(rezsi, null, '\t')}
-                </code>
-            </pre>
-        </>
-    );
+				<code>{JSON.stringify(aramTarifa, null, "\t")}</code>
+			</pre>
+		</>
+	);
 }
 
 export default Advanced;
