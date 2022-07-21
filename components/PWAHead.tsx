@@ -1,5 +1,4 @@
 import Head from "next/head";
-import React from "react";
 
 const PWAHead = () => {
     const title = "Rezsi kalkulátor"
