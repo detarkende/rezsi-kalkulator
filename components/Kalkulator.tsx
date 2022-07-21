@@ -78,6 +78,11 @@ const Kalkulator = ({
 		});
 	}, [ujRezsi]);
 
+	useEffect(() => {
+		setRezsiEgysegben(0);
+		setRezsiForintban(0);
+	}, [regiAr, ujAr])
+
 	return (
 		<>
 			<h3>{cim}</h3>
