@@ -26,7 +26,7 @@ const Home: NextPage = () => {
 					setNagyCsaladosKedvezmeny={setNagyCsaladosKedvezmeny}
 				/>
 			</div>
-			<hr className="my-4" />
+			<hr className="my-2" />
 			<div>
 				<Kalkulator
 					setKoltsegek={setKoltsegek}
@@ -37,7 +37,7 @@ const Home: NextPage = () => {
 					atlagFogyasztasHatara={210}
 				/>
 			</div>
-			<hr className="my-4" />
+			<hr className="my-2" />
 			<div>
 				<Kalkulator
 					setKoltsegek={setKoltsegek}
@@ -56,7 +56,7 @@ const Home: NextPage = () => {
 				Összesen:&nbsp;
 				<strong>{formatAsForint(getMapValuesSum(koltsegek))}</strong>
 			</p>
-
+			<hr className="my-2" />
 			<div className="rounded bg-light p-3">
 				<p className="text-muted">
 					A kalkulátor az alábbi árakkal számol. Variáld kedvedre az
@@ -73,7 +73,7 @@ const Home: NextPage = () => {
 
 				</p>
 				<button
-					className='btn-unstyled border-0 bg-transparent px-0 mb-3'
+					className='btn-unstyled border-0 bg-transparent px-0 mb-1'
 					aria-expanded={varialasOpen}
 					aria-controls='arak-modositasa'
 					onClick={() => setVarialasOpen(prev => !prev)}

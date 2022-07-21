@@ -1,4 +1,5 @@
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import type { ReactNode } from "react";
 import { Container } from "react-bootstrap";
 import PWAHead from "../PWAHead";
@@ -15,6 +16,7 @@ function Layout({children}: {children: ReactNode}) {
                     {children}
                     </Container>
                 </main>
+                <Footer />
             </div>
 
             <style jsx>{`
