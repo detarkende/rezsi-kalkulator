@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Kalkulator from '@/components/Kalkulator';
 import NagyCsaladosInput from '@/components/NagyCsaladosInput';
 import { formatAsForint, getMapValuesSum } from '@/helpers';
+import { parseInput } from '@/helpers';
 
 const Home: NextPage = () => {
 	const [koltsegek, setKoltsegek] = useState<Map<string, number>>(new Map());
@@ -86,9 +87,10 @@ const Home: NextPage = () => {
 								<Form.Label>Áram csökkentett ár</Form.Label>
 								<Form.Control
 									type="number"
+									inputMode="decimal"
 									defaultValue={aramRegiAr}
 									onChange={(e) =>
-										setAramRegiAr(+e.target.value)
+										setAramRegiAr(parseInput(e.target.value))
 									}
 								/>
 							</Form.Group>
@@ -98,9 +100,10 @@ const Home: NextPage = () => {
 								<Form.Label>Áram átlag feletti ár</Form.Label>
 								<Form.Control
 									type="number"
+									inputMode="decimal"
 									defaultValue={aramUjAr}
 									onChange={(e) =>
-										setAramUjAr(+e.target.value)
+										setAramUjAr(parseInput(e.target.value))
 									}
 								/>
 							</Form.Group>
@@ -112,9 +115,10 @@ const Home: NextPage = () => {
 								<Form.Label>Gáz csökkentett ár</Form.Label>
 								<Form.Control
 									type="number"
+									inputMode="decimal"
 									defaultValue={gazRegiAr}
 									onChange={(e) =>
-										setGazRegiAr(+e.target.value)
+										setGazRegiAr(parseInput(e.target.value))
 									}
 								/>
 							</Form.Group>
@@ -124,9 +128,10 @@ const Home: NextPage = () => {
 								<Form.Label>Gáz átlag feletti ár</Form.Label>
 								<Form.Control
 									type="number"
+									inputMode="decimal"
 									defaultValue={gazUjAr}
 									onChange={(e) =>
-										setGazUjAr(+e.target.value)
+										setGazUjAr(parseInput(e.target.value))
 									}
 								/>
 							</Form.Group>

@@ -2,11 +2,9 @@ import { Container } from "react-bootstrap";
 
 function Footer() {
 	return (
-		<>
-			
-
-			<style jsx>{``}</style>
-		</>
+		<footer className="py-3 d-flex justify-content-center align-items-center">
+			<a href="https://github.com/detarkende/rezsi-kalkulator/" target='_blank' rel="noreferrer">Github</a>
+		</footer>
 	);
 }
 

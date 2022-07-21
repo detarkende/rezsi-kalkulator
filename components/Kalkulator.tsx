@@ -1,6 +1,7 @@
 import { Col, FormControl, InputGroup, Row } from 'react-bootstrap';
 import { useState, useEffect, ChangeEvent } from 'react';
 import { ReactNode } from 'react';
+import { parseInput } from '@/helpers';
 
 const Kalkulator = ({
 	cim,
@@ -26,9 +27,7 @@ const Kalkulator = ({
 	const [rezsiForintban, setRezsiForintban] = useState<number>();
 	const [rezsiEgysegben, setRezsiEgysegben] = useState<number>();
 
-	function parseInput(input: string) {
-		return parseFloat(input.replace(',', '.').replace(/\s/g, ''));
-	}
+	
 
 	const forintChange = (e: ChangeEvent<HTMLInputElement>) => {
 		let forint = 0;
