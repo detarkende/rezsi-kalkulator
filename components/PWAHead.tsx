@@ -24,6 +24,8 @@ const PWAHead = () => {
                 <link rel="icon" type="image/png" sizes="16x16" href="/pwa/favicon-16x16.png"/>
                 <link rel="manifest" href="/pwa/site.webmanifest"/>
                 <meta name="theme-color" content="#212529"/>
+
+                <meta name="google-site-verification" content="-PBhJlxAqqgM4Bkj0ZUNPyb2puvDkox_OW3QT3l1aq4" />
             </Head>
         </>
     );
