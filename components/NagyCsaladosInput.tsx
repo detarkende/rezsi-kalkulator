@@ -10,7 +10,7 @@ const NagyCsaladosInput = ({
         let gyerekSzam = parseInt(e.target.value);
 		let kedvezmeny = 0;
 		if (gyerekSzam >= 3) {
-			kedvezmeny = 600 + (gyerekSzam - 3) * 300;
+			kedvezmeny = 50 + (gyerekSzam - 3) * 25;
         }
 		setNagyCsaladosKedvezmeny(kedvezmeny);
 	};

@@ -1,6 +1,6 @@
 import FormField from "@/components/Advanced/FormField";
 import { useState, useEffect } from "react";
-import { Form, Row } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 import Fogyasztasok from "@/components/Advanced/Fogyasztasok";
 
 function Advanced() {
@@ -20,14 +20,25 @@ function Advanced() {
 	return (
 		<>
             <Row xs={1} sm={2} lg={3}>
-                <Form.Group>
-                    <Form.Label>Áramtarifa</Form.Label>
-                    <Form.Select onChange={(e) => setAramTarifa(aramTarifak.find(t => t.id == e.target.value) || aramTarifak[0])}>
-                        { aramTarifak.map((tarifa) => (
-                            <option key={tarifa.id} value={tarifa.id}>{tarifa.nev}</option>
-                        ))}
-                    </Form.Select>
-                </Form.Group>
+                <Col>
+                    <Form.Group>
+                        <Form.Label>Áramtarifa</Form.Label>
+                        <Form.Select onChange={(e) => setAramTarifa(aramTarifak.find(t => t.id === Number(e.target.value)) || aramTarifak[0])}>
+                            { aramTarifak.map((tarifa) => (
+                                <option key={tarifa.id} value={tarifa.id}>{tarifa.nev}</option>
+                            ))}
+                        </Form.Select>
+                    </Form.Group>
+                </Col>
+
+                <Col>
+                    <FormField 
+                        type="number"
+                        label="Gyermekek száma"
+                        value={gyerekek || ""}
+                        onChange={(e) => setGyerekek(Number(e.target.value))}
+                    />
+                </Col>
             </Row>           
 
 			<Row xs={1} sm={2} lg={3}>
